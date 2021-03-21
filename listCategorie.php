@@ -24,7 +24,7 @@ $selectCategorie = "SELECT *
                     ";
 $reqCategorie = $conn->query($selectCategorie);
 while ($row = mysqli_fetch_row($reqCategorie)) {
-  $list = array( 'id' =>  $row[0], 'categorie' => $row[1]  );
+  $list = array( 'id' =>  $row[0], 'name' => $row[1]  );
   array_push($listCategorie,$list);
 }
 
