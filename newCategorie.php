@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 
@@ -16,22 +17,15 @@ if(!$conn){
     exit;
 }
 
-
 $data = json_decode(file_get_contents("php://input"));
-$categorieID = $date ->id;
 $nameCategorie = $data ->name;
 
+$createCategorie = "INSERT INTO categorie VALUES (NULL, '$nameCategorie')";
 
-
-
-$createCategorie = "INSERT INTO Categorie 
-                    VALUE 'name'= $nameCategorie
-                    ";
-
-
-if ($conn->query($createCategorie) === TRUE){
-    echo"edit ok";
-  }
-  else{
-    echo"error";
-  }
+try {
+  $conn->query($createCategorie);
+}
+catch(Exception $e){
+  echo 'Exception reçue : ',  $e->getMessage(), "\n";
+}
+  
